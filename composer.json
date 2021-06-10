@@ -1,0 +1,27 @@
+{
+    "name": "bbldn/doctrine-entity-exists-validator",
+    "type": "library",
+    "license": "MIT",
+    "description": "Entity Exists Validator",
+    "keywords": [
+        "exists",
+        "entity",
+        "doctrine",
+        "validator"
+    ],
+    "authors": [
+        {
+            "name": "Bobol Boris"
+        }
+    ],
+    "homepage": "https://github.com/bbldn/doctrine-entity-exists-validator",
+    "require": {
+        "php": "^7.4",
+        "doctrine/orm": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "BBLDN\\": "src/"
+        }
+    }
+}
