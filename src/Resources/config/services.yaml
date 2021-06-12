@@ -1,7 +1,7 @@
-BBLDN\Doctrine\Validator\EntityExistsValidator:
+BBLDN\EntityExistsValidatorBundle\Doctrine\Validator\EntityExistsValidator:
     arguments:
         - '@Doctrine\Persistence\ManagerRegistry'
 
-BBLDN\Doctrine\Validator\EntityExistsByFieldValidator:
+BBLDN\EntityExistsValidatorBundle\Doctrine\Validator\EntityExistsByFieldValidator:
     arguments:
         - '@Doctrine\Persistence\ManagerRegistry'
