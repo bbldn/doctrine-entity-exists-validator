@@ -1,0 +1,7 @@
+BBLDN\Doctrine\Validator\EntityExistsValidator:
+    arguments:
+        - '@Doctrine\Persistence\ManagerRegistry'
+
+BBLDN\Doctrine\Validator\EntityExistsByFieldValidator:
+    arguments:
+        - '@Doctrine\Persistence\ManagerRegistry'

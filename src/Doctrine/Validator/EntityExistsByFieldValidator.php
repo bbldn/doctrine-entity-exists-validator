@@ -1,6 +1,6 @@
 <?php
 
-namespace BBLDN\Doctrine\Validator;
+namespace BBLDN\EntityExistsValidatorBundle\Doctrine\Validator;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
