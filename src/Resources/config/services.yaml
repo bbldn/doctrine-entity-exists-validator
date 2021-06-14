@@ -1,9 +1,10 @@
-BBLDN\EntityExistsValidatorBundle\Doctrine\Validator\EntityExistsValidator:
-    tags: ['validator.constraint_validator']
-    arguments:
-        - '@Doctrine\Persistence\ManagerRegistry'
-
-BBLDN\EntityExistsValidatorBundle\Doctrine\Validator\EntityExistsByFieldValidator:
-    tags: ['validator.constraint_validator']
-    arguments:
-        - '@Doctrine\Persistence\ManagerRegistry'
+services:
+    BBLDN\EntityExistsValidatorBundle\Doctrine\Validator\EntityExistsValidator:
+        tags: ['validator.constraint_validator']
+        arguments:
+            - '@Doctrine\Persistence\ManagerRegistry'
+    
+    BBLDN\EntityExistsValidatorBundle\Doctrine\Validator\EntityExistsByFieldValidator:
+        tags: ['validator.constraint_validator']
+        arguments:
+            - '@Doctrine\Persistence\ManagerRegistry'
