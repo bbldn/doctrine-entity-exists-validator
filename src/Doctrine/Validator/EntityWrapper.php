@@ -3,20 +3,23 @@
 namespace BBLDN\EntityExistsValidatorBundle\Doctrine\Validator;
 
 use ReflectionClass;
-use ReflectionException;
 use ReflectionProperty;
+use ReflectionException;
 
 class EntityWrapper
 {
     private $instance;
 
-    /** @var ReflectionProperty[]  */
+    /**
+     * @var ReflectionProperty[]
+     *
+     * @psalm-var list<ReflectionProperty>
+     */
     private array $properties = [];
 
     private ReflectionClass $reflectionClass;
 
     /**
-     * EntityWrapper constructor.
      * @param mixed $instance
      * @throws ReflectionException
      */

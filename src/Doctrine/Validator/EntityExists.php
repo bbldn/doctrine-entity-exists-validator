@@ -2,17 +2,23 @@
 
 namespace BBLDN\EntityExistsValidatorBundle\Doctrine\Validator;
 
+use Attribute;
 use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
  * @Target({"CLASS", "ANNOTATION"})
  */
+#[Attribute(Attribute::TARGET_CLASS)]
 class EntityExists extends Constraint
 {
     public ?string $em = null;
 
-    /** @var string[] */
+    /**
+     * @var string[]
+     *
+     * @psalm-var list<string>
+     */
     public array $fields = [];
 
     public string $entityClass;
@@ -34,6 +40,14 @@ class EntityExists extends Constraint
     ];
 
     /**
+     * {@inheritdoc}
+     */
+    public function getTargets(): string
+    {
+        return self::CLASS_CONSTRAINT;
+    }
+
+    /**
      * @return string
      */
     public function validatedBy(): string
@@ -43,17 +57,11 @@ class EntityExists extends Constraint
 
     /**
      * @return string[]
+     *
+     * @psalm-return list<string>
      */
     public function getRequiredOptions(): array
     {
         return ['fields', 'entityClass'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTargets(): string
-    {
-        return self::CLASS_CONSTRAINT;
     }
 }

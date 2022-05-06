@@ -2,21 +2,20 @@
 
 namespace BBLDN\EntityExistsValidatorBundle\Doctrine\Validator;
 
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
-use Doctrine\Persistence\ObjectRepository;
 use ReflectionException;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 class EntityExistsValidator extends ConstraintValidator
 {
     private ManagerRegistry $registry;
 
     /**
-     * EntityExistsValidator constructor.
      * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)

@@ -2,12 +2,14 @@
 
 namespace BBLDN\EntityExistsValidatorBundle\Doctrine\Validator;
 
+use Attribute;
 use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  */
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_METHOD)]
 class EntityExistsByField extends Constraint
 {
     public ?string $em = null;
@@ -26,26 +28,9 @@ class EntityExistsByField extends Constraint
 
     public string $message = 'An "{{ entity }}" with the following field: "{{ field }}" does not exist';
 
-    /** @var array<string, string> */
     protected static $errorNames = [
         self::NOT_EXISTS_ENTITY_BY_FIELD_ERROR => 'NOT_EXISTS_ENTITY_BY_FIELD_ERROR',
     ];
-
-    /**
-     * @return string
-     */
-    public function validatedBy(): string
-    {
-        return EntityExistsByFieldValidator::class;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getRequiredOptions(): array
-    {
-        return ['field', 'entityClass'];
-    }
 
     /**
      * {@inheritdoc}
@@ -53,5 +38,23 @@ class EntityExistsByField extends Constraint
     public function getTargets(): string
     {
         return self::PROPERTY_CONSTRAINT;
+    }
+
+    /**
+     * @return string[]
+     *
+     * @psalm-return list<string>
+     */
+    public function getRequiredOptions(): array
+    {
+        return ['field', 'entityClass'];
+    }
+
+    /**
+     * @return string
+     */
+    public function validatedBy(): string
+    {
+        return EntityExistsByFieldValidator::class;
     }
 }
