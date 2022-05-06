@@ -24,6 +24,7 @@ class EntityExistsByFieldValidator extends ConstraintValidator
 
     /**
      * @param Constraint $constraint
+     * @return void
      */
     private function validateConstraint(Constraint $constraint): void
     {
@@ -59,7 +60,7 @@ class EntityExistsByFieldValidator extends ConstraintValidator
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      * @param EntityExistsByField $constraint
      * @return bool
      */
@@ -111,6 +112,7 @@ class EntityExistsByFieldValidator extends ConstraintValidator
     /**
      * @param mixed $value
      * @param Constraint $constraint
+     * @return void
      */
     public function validate($value, Constraint $constraint)
     {

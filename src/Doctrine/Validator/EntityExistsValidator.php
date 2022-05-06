@@ -25,6 +25,7 @@ class EntityExistsValidator extends ConstraintValidator
 
     /**
      * @param Constraint $constraint
+     * @return void
      */
     private function validateConstraint(Constraint $constraint): void
     {
@@ -138,6 +139,7 @@ class EntityExistsValidator extends ConstraintValidator
     /**
      * @param mixed $value
      * @param Constraint $constraint
+     * @return void
      * @throws ReflectionException
      */
     public function validate($value, Constraint $constraint): void

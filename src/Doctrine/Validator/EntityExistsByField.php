@@ -7,14 +7,15 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
+ * @NamedArgumentConstructor
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  */
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_METHOD)]
 class EntityExistsByField extends Constraint
 {
-    public ?string $em = null;
-
     public string $entityClass;
+
+    public ?string $em = null;
 
     public string $field = 'id';
 
@@ -56,5 +57,35 @@ class EntityExistsByField extends Constraint
     public function validatedBy(): string
     {
         return EntityExistsByFieldValidator::class;
+    }
+
+    /**
+     * @param string $field
+     * @param string $message
+     * @param string|null $em
+     * @param bool $ignoreNull
+     * @param string $entityClass
+     * @param bool $ignoreLessThanOne
+     * @param string $repositoryMethod
+     */
+    public function __construct(
+        string $entityClass,
+        ?string $em = null,
+        string $field = 'id',
+        bool $ignoreNull = true,
+        bool $ignoreLessThanOne = true,
+        string $repositoryMethod  = 'findBy',
+        string $message = 'An "{{ entity }}" with the following field: "{{ field }}" does not exist'
+    )
+    {
+        $this->em = $em;
+        $this->field = $field;
+        $this->message = $message;
+        $this->ignoreNull = $ignoreNull;
+        $this->entityClass = $entityClass;
+        $this->repositoryMethod = $repositoryMethod;
+        $this->ignoreLessThanOne = $ignoreLessThanOne;
+
+        parent::__construct();
     }
 }

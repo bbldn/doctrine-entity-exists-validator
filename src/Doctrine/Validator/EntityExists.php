@@ -7,11 +7,14 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
+ * @NamedArgumentConstructor
  * @Target({"CLASS", "ANNOTATION"})
  */
 #[Attribute(Attribute::TARGET_CLASS)]
 class EntityExists extends Constraint
 {
+    public string $entityClass;
+
     public ?string $em = null;
 
     /**
@@ -20,8 +23,6 @@ class EntityExists extends Constraint
      * @psalm-var list<string>
      */
     public array $fields = [];
-
-    public string $entityClass;
 
     public bool $ignoreNull = true;
 
@@ -63,5 +64,38 @@ class EntityExists extends Constraint
     public function getRequiredOptions(): array
     {
         return ['fields', 'entityClass'];
+    }
+
+    /**
+     * @param array $fields
+     * @param string $message
+     * @param string|null $em
+     * @param bool $ignoreNull
+     * @param string $errorPath
+     * @param string $entityClass
+     * @param bool $ignoreLessThanOne
+     * @param string $repositoryMethod
+     */
+    public function __construct(
+        string $entityClass,
+        ?string $em = null,
+        array $fields = [],
+        bool $ignoreNull = true,
+        string $errorPath = 'Entity',
+        bool $ignoreLessThanOne = true,
+        string $repositoryMethod  = 'findBy',
+        string $message = 'An "{{ entity }}" with the following fields: "{{ fields }}" does not exist'
+    )
+    {
+        $this->em = $em;
+        $this->fields = $fields;
+        $this->message = $message;
+        $this->errorPath = $errorPath;
+        $this->ignoreNull = $ignoreNull;
+        $this->entityClass = $entityClass;
+        $this->repositoryMethod = $repositoryMethod;
+        $this->ignoreLessThanOne = $ignoreLessThanOne;
+
+        parent::__construct();
     }
 }
