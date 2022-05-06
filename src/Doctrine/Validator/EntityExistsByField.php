@@ -86,6 +86,10 @@ class EntityExistsByField extends Constraint
         $this->repositoryMethod = $repositoryMethod;
         $this->ignoreLessThanOne = $ignoreLessThanOne;
 
-        parent::__construct();
+        $options = [
+            'entityClass' => $this->entityClass,
+        ];
+
+        parent::__construct($options);
     }
 }
