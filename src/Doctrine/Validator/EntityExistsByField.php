@@ -87,6 +87,7 @@ class EntityExistsByField extends Constraint
         $this->ignoreLessThanOne = $ignoreLessThanOne;
 
         $options = [
+            'field' => $this->field,
             'entityClass' => $this->entityClass,
         ];
 
